@@ -1,0 +1,17 @@
+{
+  "name": "pyconau-passkeys",
+  "version": "1.0.0",
+  "private": true,
+  "description": "11ty companion site for the PyCon AU talk Passkeys: Authentication Without Shared Secrets.",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "convert:slides": "node scripts/convert-slides.mjs"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "js-yaml": "^4.1.0",
+    "sharp": "^0.34.3"
+  }
+}

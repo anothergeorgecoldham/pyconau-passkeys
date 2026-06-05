@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+title: Home
+description: A visual essay companion site for a PyCon AU talk about passkeys and authentication without shared secrets.
+---
+
+<section class="hero">
+  <div class="site-shell hero-panel reveal">
+    <div class="hero-content">
+      <p class="eyebrow">{{ talk.project.event }}</p>
+      <h1>{{ talk.project.title }}</h1>
+      <p class="lede">A conference companion and visual essay about why authentication gets stronger when we stop asking humans to manage reusable secrets in hostile environments.</p>
+      <p class="button-row">
+        <a class="nav-button" href="{{ talk.slides[0] | slidePath | url }}">Start the visual essay</a>
+        <a class="nav-button" href="{{ '/resources/' | url }}">Browse resources</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="site-shell content-section" aria-labelledby="slide-index">
+  <p class="eyebrow">Guided talk companion</p>
+  <h2 id="slide-index">Slides and speaker notes</h2>
+  <div class="slide-grid">
+    {% for slide in talk.slides %}
+      <article class="source-card slide-card">
+        <img src="{{ slide | slideAsset | url }}" alt="Slide {{ slide.number }}: {{ slide.title }}" loading="lazy">
+        <p class="type">Slide {{ slide.number }}</p>
+        <h3><a href="{{ slide | slidePath | url }}">{{ slide.title }}</a></h3>
+        <p>{{ slide.page_summary }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>

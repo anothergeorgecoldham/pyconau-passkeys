@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Highlight notes
+description: Presenter notes and likely questions from the passkeys talk.
+permalink: /notes/
+---
+
+<section class="site-shell content-section">
+  <p class="eyebrow">Presenter reference</p>
+  <h1>Highlight notes</h1>
+  <p class="lede">Likely questions, emphasis points, and build notes collected across the slide sequence.</p>
+
+  {% for slide in talk.slides %}
+    {% if slide.notes %}
+      <section class="content-panel notes-panel" aria-labelledby="notes-slide-{{ slide.number }}">
+        <h2 id="notes-slide-{{ slide.number }}"><a href="{{ slide | slidePath | url }}">Slide {{ slide.number }}: {{ slide.title }}</a></h2>
+        {% for note in slide.notes %}
+          <aside class="note-callout">
+            <strong>{{ note.title }}:</strong> {{ note.body }}
+          </aside>
+        {% endfor %}
+      </section>
+    {% endif %}
+  {% endfor %}
+</section>

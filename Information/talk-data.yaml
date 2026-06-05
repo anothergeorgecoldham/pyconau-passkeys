@@ -1,0 +1,769 @@
+project:
+  name: pyconau-passkeys
+  title: 'Passkeys: Authentication Without Shared Secrets'
+  speaker: George Coldham
+  speaker_role: Microsoft Cloud Solution Architect
+  event: PyCon AU
+  ssg: 11ty
+  hosting: GitHub Pages
+  style: Modern Art Nouveau visual essay and polished conference companion site
+  palette:
+    plum: '#474350'
+    mist: '#F8FFF4'
+    cream: '#FCFFEB'
+    pale_gold: '#FAFAC6'
+    peach: '#FECDAA'
+  future_slide_12: true
+sources:
+  w3c_webauthn_3:
+    title: 'W3C Web Authentication: An API for accessing Public Key Credentials Level 3'
+    url: https://www.w3.org/TR/webauthn-3/
+    type: standard
+    why: Primary web standard for WebAuthn, public-key credentials, relying parties, origins, challenges, authenticators,
+      attestation and assertions.
+  passkeys_dev_intro:
+    title: passkeys.dev — What are passkeys?
+    url: https://passkeys.dev/docs/intro/what-are-passkeys/
+    type: developer reference
+    why: Clear developer-oriented explanation of passkeys, public/private keys, storage model and phishing resistance.
+  passkeys_dev:
+    title: passkeys.dev — Developer resources
+    url: https://passkeys.dev/
+    type: developer reference
+    why: Vendor-neutral passkey implementation resource maintained by members of the W3C Web Identity & Credentials Adoption
+      Community Group and FIDO Alliance.
+  fido_enterprise:
+    title: FIDO Alliance — Replacing Password-Only Authentication with Passkeys in the Enterprise
+    url: https://fidoalliance.org/white-paper-replacing-password-only-authentication-with-passkeys-in-the-enterprise/
+    type: industry body white paper
+    why: Enterprise passkey deployment guidance, including synced versus device-bound passkeys.
+  fido_multi_device:
+    title: FIDO Alliance — Multi-Device FIDO Credentials
+    url: https://fidoalliance.org/white-paper-multi-device-fido-credentials/
+    type: industry body white paper
+    why: Explains multi-device credentials and why synced credentials improve recoverability and adoption.
+  nist_800_63b:
+    title: 'NIST SP 800-63B — Digital Identity Guidelines: Authentication and Lifecycle Management'
+    url: https://pages.nist.gov/800-63-3/sp800-63b.html
+    type: government standard/guideline
+    why: Authentication assurance, authenticator lifecycle, loss/revocation and verifier guidance.
+  cisa_pr_mfa:
+    title: CISA — Implementing Phishing-Resistant MFA
+    url: https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf
+    type: government guidance
+    why: Authoritative guidance on phishing-resistant MFA and why not all MFA methods resist phishing equally.
+  owasp_auth:
+    title: OWASP Authentication Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+    type: application security guidance
+    why: Practical application security guidance on authentication, password handling and modern best practices.
+  owasp_mfa:
+    title: OWASP Multifactor Authentication Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html
+    type: application security guidance
+    why: Recovery-code and fallback guidance; useful for the “recovery is part of authentication” message.
+  owasp_top10_a07:
+    title: OWASP Top 10 — A07 Identification and Authentication Failures
+    url: https://owasp.org/Top10/2021/A07_2021-Identification_and_Authentication_Failures/
+    type: application security reference
+    why: Useful context for account compromise, stolen credentials, credential stuffing and authentication failure risks.
+  google_passkeys_dev:
+    title: Google Identity — Passkeys developer guide for relying parties
+    url: https://developers.google.com/identity/passkeys/developer-guides
+    type: hyperscaler developer documentation
+    why: Implementation guidance covering RP ID, challenge generation, registration and authentication flows.
+  web_dev_passkey_registration:
+    title: web.dev — Create a passkey for passwordless logins
+    url: https://web.dev/articles/passkey-registration
+    type: developer documentation
+    why: Practical implementation guidance for registration UX and WebAuthn calls.
+  mdn_webauthn:
+    title: MDN — Web Authentication API
+    url: https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API
+    type: developer documentation
+    why: Accessible API-level WebAuthn reference for web developers.
+  ms_entra_passkeys:
+    title: Microsoft Learn — Passkeys (FIDO2) authentication method in Microsoft Entra ID
+    url: https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passkeys-fido2
+    type: hyperscaler/identity platform documentation
+    why: Concrete enterprise identity flow showing challenge, hashed RP ID, user verification and public-key verification.
+  ms_enable_authenticator_passkey:
+    title: Microsoft Learn — Enable passkeys in Authenticator for Microsoft Entra ID
+    url: https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-enable-authenticator-passkey
+    type: hyperscaler/identity platform documentation
+    why: Practical enterprise enablement guidance and conditional access/authentication strength linkage.
+  cyber_au_passkeys:
+    title: Australian Signals Directorate / cyber.gov.au — Passkeys
+    url: https://www.cyber.gov.au/protect-yourself/secure-your-accounts/passkeys
+    type: Australian government public guidance
+    why: Plain-language Australian public guidance on passkeys; useful for audience-friendly explainer pages.
+  cyber_au_phishing:
+    title: Australian Signals Directorate / cyber.gov.au — Phishing
+    url: https://www.cyber.gov.au/threats/types-threats/phishing
+    type: Australian government public guidance
+    why: Local authoritative explanation of phishing and how attackers trick people into disclosing credentials or linking
+      devices.
+  eleventy_docs:
+    title: Eleventy official documentation
+    url: https://www.11ty.dev/
+    type: SSG documentation
+    why: Primary documentation for the recommended static-site generator.
+  eleventy_deploy:
+    title: Eleventy — Deployment to GitHub Pages
+    url: https://www.11ty.dev/docs/deployment/
+    type: SSG deployment documentation
+    why: Official deployment guidance for Eleventy on GitHub Pages using GitHub Actions.
+slides:
+- number: 1
+  slug: passkeys-authentication-without-shared-secrets
+  title: 'Passkeys: Authentication Without Shared Secrets'
+  image: passkeys_authentication_in_elegant_design.png
+  intention: Open with a visual statement that signals this is not a generic security deck. Establish passkeys as a structural
+    redesign of authentication, not just another login convenience.
+  page_summary: The talk introduces passkeys as authentication without reusable shared secrets. The central claim is that
+    authentication gets stronger when we stop making humans safely manage secrets in hostile environments.
+  speaker_track: 'Good morning. I’m going to talk about passkeys, but I want to start by saying this is not really a talk
+    about a new login feature. It is a talk about why authentication keeps failing, why we keep blaming the wrong thing, and
+    why passkeys represent a genuinely different model.
+
+
+    For decades, we have told people to choose better passwords, use password managers, enable MFA, watch out for phishing,
+    check the URL, do not reuse passwords, do not approve strange prompts, and please somehow remember which of the fourteen
+    login screens they saw this week were real.
+
+
+    And then, when it goes wrong, we often call it user error. I think that is the wrong diagnosis.
+
+
+    Authentication keeps failing not because people are careless, but because passwords ask humans to safely manage reusable
+    secrets in hostile environments.
+
+
+    Passkeys are interesting because they do not try to make users better at that job. They remove the job.
+
+
+    The core idea for this talk is simple: authentication gets stronger when we stop depending on humans to manage reusable
+    secrets.'
+  notes:
+  - title: Likely question
+    body: 'Are passkeys just a nicer login UX? Answer: no. The UX is nicer, but the security shift is that a public/private
+      key pair replaces a reusable shared secret.'
+  - title: Presenter emphasis
+    body: Pause on the phrase “they remove the job.” It is the opening thesis in plain English.
+  source_keys:
+  - passkeys_dev_intro
+  - w3c_webauthn_3
+  - fido_enterprise
+- number: 2
+  slug: the-problem-is-not-the-user
+  title: Authentication keeps failing
+  image: authentication_challenges_with_decorative_elegance.png
+  intention: Shift blame from individual users to system design. Establish the human-centred argument that passwords require
+    unreasonable security performance from ordinary people.
+  page_summary: Password-based authentication asks users to recognise deception, manage secrets, avoid reuse and operate MFA
+    correctly under pressure. That is a brittle design, not a moral failing.
+  speaker_track: 'This is the uncomfortable truth: authentication keeps failing.
+
+
+    Not because users are stupid. Not because users hate security. Not because people need one more awareness module with
+    a stock photo of a hacker in a hoodie.
+
+
+    It keeps failing because the system asks too much of them.
+
+
+    A normal person signing into a service is expected to do a lot of security work very quickly. They need to recognise whether
+    the page is real. They need to use the right password. They need to avoid reusing that password somewhere else. They need
+    to trust the right MFA prompt. They need to not be fooled by urgency, branding, email formatting, domain tricks, or a
+    workflow that looks basically identical to the real one.
+
+
+    That is a lot to ask of a person who is just trying to submit an expense claim, check their email, deploy code, or buy
+    concert tickets.
+
+
+    And attackers understand this very well. They do not need to defeat a mathematically perfect system. They need to defeat
+    the human operating it under pressure.
+
+
+    So the first shift I want to make is this: authentication failure is often not a user behaviour problem. It is a system
+    design problem.
+
+
+    If the security of the login depends on the user reliably spotting deception, then eventually deception wins.'
+  notes:
+  - title: Likely question
+    body: 'Isn’t user training still important? Answer: yes, but training should not be the primary control for recognising
+      fake login pages every time.'
+  - title: Site note
+    body: Use this page to make the human-centred case before introducing any cryptography.
+  source_keys:
+  - cyber_au_phishing
+  - cisa_pr_mfa
+  - owasp_top10_a07
+- number: 3
+  slug: passwords-are-shared-secrets
+  title: Passwords are shared secrets
+  image: fragile_connections_shared_secrets_and_security.png
+  intention: 'Explain the core structural weakness of password authentication: one reusable secret is depended on by both
+    user and service.'
+  page_summary: A password is valuable because it can be reused, replayed, guessed, phished, leaked or stolen. This creates
+    risk at both the user side and service side.
+  speaker_track: 'At the heart of the problem is the password itself.
+
+
+    A password is a shared secret. The user knows it. The service verifies it. In some form, both sides are involved in protecting
+    it.
+
+
+    That creates a bad security shape.
+
+
+    The user has to protect the password from phishing, malware, reuse, shoulder surfing, bad memory, browser prompts, old
+    notes, and whatever they named their dog in 2008.
+
+
+    The service has to protect password hashes, reset flows, credential databases, logging systems, support workflows, and
+    all the other places authentication data may accidentally leak.
+
+
+    Even when passwords are hashed and salted properly, the model still has a core weakness: the thing being protected is
+    reusable.
+
+
+    If I can convince you to type your password into the wrong place, I can try to use it in the right place. If I steal it
+    from one service, I can try it somewhere else. If I capture it in transit through a phishing proxy, I may be able to use
+    it before anyone knows what happened.
+
+
+    This is why passwords are so attractive to attackers.
+
+
+    A password is not just something you know. It is something an attacker can convince you to give away. And because it is
+    reusable, one mistake can have a life beyond the moment it happened.'
+  notes:
+  - title: Likely question
+    body: 'Are hashed passwords still dangerous? Answer: secure hashing helps, but the user still has a reusable secret that
+      can be phished or reused elsewhere.'
+  - title: Presenter emphasis
+    body: Avoid sounding anti-password-manager here. The target is the primitive, not people doing sensible mitigation.
+  source_keys:
+  - owasp_auth
+  - nist_800_63b
+  - owasp_top10_a07
+- number: 4
+  slug: layers-help-but-do-not-remove-the-failure-mode
+  title: Password managers help. MFA helps.
+  image: digital_security_through_elegant_design.png
+  intention: Acknowledge existing controls fairly while explaining that many are compensating controls around a still-reusable
+    secret.
+  page_summary: Password managers, MFA, policy and training all improve security, but they often reduce risk around passwords
+    rather than removing password failure modes entirely.
+  speaker_track: 'Now, I want to be very clear: password managers are good. MFA is good.
+
+
+    Security training is not useless. Policy is not useless. Conditional access, monitoring, risk detection, all useful.
+
+
+    These layers matter.
+
+
+    Password managers reduce reuse. They help generate strong passwords. They can make phishing harder when they refuse to
+    autofill on the wrong domain.
+
+
+    MFA raises the bar. It means the password alone is not enough. That is a big improvement over password-only authentication.
+
+
+    But these controls are often compensating for the underlying weakness rather than removing it.
+
+
+    The reusable secret is still there.
+
+
+    And attackers have adapted. We now see phishing kits that proxy real login pages. We see MFA fatigue attacks. We see users
+    tricked into entering one-time codes. We see session tokens stolen after the login succeeds. We see support and recovery
+    paths targeted when the primary path gets stronger.
+
+
+    So the point is not “MFA is bad.” That would be nonsense.
+
+
+    The point is that adding layers around a reusable secret is not the same as removing the reusable secret.
+
+
+    A stronger lock on a fragile door is still attached to a fragile door.
+
+
+    This is where passkeys become interesting. They change the shape of the problem.'
+  notes:
+  - title: Likely question
+    body: 'Are you saying MFA is obsolete? Answer: no. The argument is that phishing-resistant authentication changes the
+      underlying model; MFA remains valuable, especially when implemented with resistant methods.'
+  - title: Design note
+    body: Use this page to keep credibility with security engineers. Do not dunk on MFA; be precise.
+  source_keys:
+  - cisa_pr_mfa
+  - owasp_mfa
+  - owasp_auth
+  - ms_entra_passkeys
+- number: 5
+  slug: passkeys-replace-secrets-with-proof
+  title: Passkeys replace secrets with proof
+  image: passkeys_explained_with_elegant_design.png
+  intention: 'Deliver the first technical mental model: registration stores a public key with the service; authentication
+    proves possession of the private key by signing a challenge.'
+  page_summary: Passkeys use public-key cryptography. The private key remains on the user device or authenticator; the service
+    stores the public key and verifies a signed challenge response.
+  speaker_track: 'A passkey replaces the password with a public-key credential.
+
+
+    At a high level, this is how it works.
+
+
+    When you create a passkey for a service, your device or authenticator creates a key pair. There is a public key and a
+    private key.
+
+
+    The public key is registered with the service. That is safe to store on the server. It is public by design.
+
+
+    The private key stays with your authenticator. That might be your phone, your laptop, a platform credential store, or
+    a security key.
+
+
+    When you sign in, the service does not ask you to send a password. Instead, the service sends a challenge.
+
+
+    Your authenticator signs that challenge using the private key. The service verifies the signature using the public key.
+
+
+    So the service gets proof that you hold the private key, but the private key itself is never sent.
+
+
+    That is the critical distinction.
+
+
+    With passwords, authentication means proving knowledge of a shared secret. With passkeys, authentication means proving
+    possession of a private key without revealing it.
+
+
+    This is much better security architecture.
+
+
+    The server is no longer storing password hashes that attackers can try to crack. The user is no longer typing a reusable
+    secret into login pages. The network is no longer carrying a password that can be replayed.
+
+
+    The application receives proof, not a secret. That is why this slide says: passkeys replace secrets with proof.'
+  notes:
+  - title: Likely question
+    body: 'What should developers implement? Answer: WebAuthn registration and authentication flows, preferably using mature
+      libraries or platform identity services rather than hand-rolled crypto.'
+  - title: Presenter emphasis
+    body: Slow down here. This is the first slide where a non-security developer builds the core mental model.
+  source_keys:
+  - w3c_webauthn_3
+  - google_passkeys_dev
+  - mdn_webauthn
+  - web_dev_passkey_registration
+  - passkeys_dev_intro
+- number: 6
+  slug: your-face-is-not-your-password
+  title: Your face is not your password
+  image: biometric_security_infographic_with_floral_design.png
+  intention: Correct the common misconception that biometrics are sent to websites. Explain local unlock versus remote authentication
+    proof.
+  page_summary: Biometrics or device PINs unlock the private key locally. The website receives a signed cryptographic proof,
+    not biometric data.
+  speaker_track: 'One of the most common misunderstandings about passkeys is the role of biometrics.
+
+
+    People see Face ID, Touch ID, Windows Hello, or Android biometrics and assume their face or fingerprint is somehow being
+    sent to the website.
+
+
+    That is not what is happening.
+
+
+    Your face is not your password. Your fingerprint is not your password. Your device PIN is not being handed to the website
+    either.
+
+
+    Those things are local unlock mechanisms. They unlock access to the private key on your device.
+
+
+    The website receives a cryptographic proof. It does not receive your biometric data.
+
+
+    So when you use a passkey and unlock it with your face, the flow is not: “Here is my face, please let me in.”
+
+
+    The flow is: “My device has verified me locally, unlocked the private key, signed the challenge, and sent you proof.”
+
+
+    That difference matters. It matters for privacy. It matters for threat modelling. It matters for user trust.
+
+
+    Biometrics in this model are not a shared secret. They are a local gate.
+
+
+    And if you prefer not to use biometrics, a device PIN can often serve the same unlock role. Again, local unlock. Not server-side
+    credential.
+
+
+    A useful way to explain this to users is: the biometric unlocks the key; the key signs the challenge; the service verifies
+    the signature.
+
+
+    The website never needs your face. Which is good, because frankly most websites have not earned that kind of intimacy.'
+  notes:
+  - title: Likely question
+    body: 'Are biometrics sent to the relying party? Answer: no. They are used for local user verification. The relying party
+      receives an assertion/signature.'
+  - title: Possible page callout
+    body: “Local unlock is not the same as a server-side credential.”
+  source_keys:
+  - passkeys_dev_intro
+  - ms_entra_passkeys
+  - w3c_webauthn_3
+  - cyber_au_passkeys
+- number: 7
+  slug: phishing-the-false-door
+  title: Phishing works because fake doors look real
+  image: phishing_real_vs_fake_doors.png
+  intention: 'Introduce the first attack story. Show why phishing succeeds against password and phishable-MFA systems: attackers
+    exploit human judgement and workflow pressure.'
+  page_summary: Phishing succeeds when fake login experiences are convincing enough. Attackers do not need a perfect fake;
+    they need a plausible one at the right moment.
+  speaker_track: 'Now let’s look at the first major real-world failure mode: phishing.
+
+
+    Phishing works because fake doors look real.
+
+
+    And attackers do not need perfect fakes. They need convincing ones.
+
+
+    A phishing page does not need to fool a security engineer calmly examining TLS certificates over coffee.
+
+
+    It needs to fool a busy person who has a task to complete, an email that looks plausible, and a login screen that looks
+    close enough.
+
+
+    Modern phishing can be very polished. The branding is copied. The login flow is familiar. The URL is close enough to pass
+    a quick glance. The email has urgency. The page may even relay the real login process in the background.
+
+
+    This is especially important with MFA.
+
+
+    A lot of people think MFA means phishing stops. It does not.
+
+
+    Some forms of MFA are much more resistant than others, but codes and push approvals can still be captured or manipulated.
+
+
+    In a reverse-proxy phishing attack, the attacker can sit between the user and the real service. The user thinks they are
+    signing in normally. The attacker relays the interaction and captures the resulting session.
+
+
+    So once again, the problem is not that the user failed to read carefully enough.
+
+
+    The problem is that the security model asked the user to determine whether the door was real. And that is exactly the
+    kind of judgement attackers are good at exploiting.'
+  notes:
+  - title: Likely question
+    body: 'Does MFA stop phishing? Answer: some MFA is phishing-resistant, but codes, push approvals and weaker flows can
+      still be phished or proxied.'
+  - title: Presenter emphasis
+    body: This is the threat story that makes origin binding matter. Do not jump to the solution too quickly.
+  source_keys:
+  - cyber_au_phishing
+  - cisa_pr_mfa
+  - owasp_mfa
+- number: 8
+  slug: origin-binding
+  title: Passkeys are bound to the real origin
+  image: passkeys_and_origin_binding_infographic.png
+  intention: 'Explain the strongest security claim: passkeys reduce credential phishing because credentials are scoped to
+    the legitimate relying party/origin.'
+  page_summary: A passkey created for one relying party is not available to a lookalike site. The browser and authenticator
+    enforce where the credential belongs, moving trust out of user judgement.
+  speaker_track: 'This is where passkeys change the phishing story.
+
+
+    Passkeys are bound to the real origin.
+
+
+    A passkey created for example.com is not valid for evil-example.com.
+
+
+    Even if the fake site looks perfect, even if the logo is correct, even if the colours match, even if the attacker has
+    built something beautiful and deeply annoying, the credential does not belong there.
+
+
+    The browser and authenticator enforce the origin binding.
+
+
+    That means the user is no longer solely responsible for visually inspecting the page and deciding if it is real.
+
+
+    The authentication system itself knows where the credential belongs.
+
+
+    This is one of the most important ideas in the whole talk: passkeys move trust from human judgement to cryptographic proof.
+
+
+    That is a big deal.
+
+
+    Because humans are inconsistent at spotting phishing. They get tired. They get rushed. They use small screens. They work
+    across lots of services. They get interrupted. They are human, which historically has been a difficult patch cycle.
+
+
+    Cryptographic origin binding is not perfect magic, but it removes one of the worst expectations we place on users.
+
+
+    Instead of saying, “Please identify the real login page every time,” we say, “This credential only works with the origin
+    it was created for.”
+
+
+    That is a better division of labour.
+
+
+    Humans should not be the phishing detection engine. The protocol should do more of the work.'
+  notes:
+  - title: Origin-binding note
+    body: A WebAuthn credential is scoped to a relying party. The browser and authenticator prevent the credential being used
+      by unrelated origins.
+  - title: Likely question
+    body: 'Does origin binding eliminate phishing completely? Answer: no. It strongly resists credential phishing, but session
+      theft, endpoint compromise, OAuth consent abuse and recovery attacks still matter.'
+  - title: Key line
+    body: “Passkeys move trust from human judgement to cryptographic proof.”
+  source_keys:
+  - w3c_webauthn_3
+  - passkeys_dev_intro
+  - google_passkeys_dev
+  - ms_entra_passkeys
+  - cisa_pr_mfa
+- number: 9
+  slug: password-reuse-one-breach-many-compromises
+  title: Password reuse turns one breach into many compromises
+  image: password_reuse_a_dangerous_connection.png
+  intention: 'Introduce the second attack story: password reuse and credential stuffing turn isolated breaches into cross-site
+    compromise.'
+  page_summary: Reusable passwords are portable. Attackers exploit that portability by trying breached credentials across
+    email, shopping, banking, source code and cloud services.
+  speaker_track: 'The second real-world failure mode is password reuse.
+
+
+    Password reuse is not mysterious. It is rational behaviour in an unreasonable system.
+
+
+    People have too many accounts. Too many login screens. Too many rules. Too many password expiry memories from ancient
+    enterprise systems that should have been taken out behind the shed years ago.
+
+
+    So people reuse passwords. Or they use patterns. Or they use one strong password in several places because they think
+    those places are important.
+
+
+    The problem is that a reusable secret does not stay contained.
+
+
+    If one service is breached and credentials are exposed, attackers try those credentials elsewhere.
+
+
+    Email. Shopping. Banking. Source code. Cloud platforms.
+
+
+    This is credential stuffing. And it works because passwords are portable.
+
+
+    The attacker does not need to compromise every service independently if users have linked them together with the same
+    secret.
+
+
+    This is why one weak or breached service can become a stepping stone into something much more important.
+
+
+    The user may think they created separate accounts. But if the same password unlocks several of them, the attacker sees
+    one connected surface.
+
+
+    The password becomes a skeleton key. And skeleton keys are excellent, unless you are the skeleton.'
+  notes:
+  - title: Likely question
+    body: 'Can password managers solve reuse? Answer: they help a lot, but passkeys remove the reusable credential from the
+      service login flow entirely.'
+  - title: Site note
+    body: This page should explain credential stuffing plainly and map it to account compromise risk.
+  source_keys:
+  - owasp_top10_a07
+  - owasp_auth
+  - cyber_au_passkeys
+- number: 10
+  slug: unique-per-service
+  title: A passkey for one service is useless somewhere else
+  image: distinct_keys_for_distinct_services.png
+  intention: Resolve the password-reuse problem by showing that each service receives a distinct key pair and a breach of
+    public keys does not create reusable credentials.
+  page_summary: Passkeys are unique per relying party. Public keys are stored by the service; private keys stay with the user’s
+    authenticator. A credential for one service is not useful at another.
+  speaker_track: 'Passkeys change this as well.
+
+
+    Each service gets a distinct key pair.
+
+
+    Your passkey for email is not your passkey for shopping. Your passkey for source control is not your passkey for banking.
+
+
+    Your passkey for one service is useless somewhere else.
+
+
+    That means the cross-site compromise pattern changes.
+
+
+    If a service storing passkey public keys is breached, the attacker gets public keys. Public keys are designed to be public.
+    They do not let the attacker sign in.
+
+
+    The private keys remain with the user’s authenticator.
+
+
+    There is no password database to crack in the traditional sense. There is no shared secret to replay against another site.
+    There is no single reused credential that suddenly opens five doors.
+
+
+    This does not mean breaches no longer matter.
+
+
+    Of course they matter. Attackers may still steal personal data, session tokens, recovery channels, application data, or
+    exploit other weaknesses.
+
+
+    Passkeys are not fairy dust.
+
+
+    But they remove one extremely common and useful attacker pattern: taking a reusable password from one context and trying
+    it in another.
+
+
+    That is the power of changing the primitive.
+
+
+    You are not asking users to avoid reuse. You are removing the reusable thing. That is much stronger than policy.'
+  notes:
+  - title: Likely question
+    body: 'What if the server database is breached? Answer: the server stores public keys, not reusable secrets. Other data
+      may still be sensitive, but the public key alone cannot be replayed as a password.'
+  - title: Presenter emphasis
+    body: Say “not fairy dust” to keep the claim defensible and avoid over-selling.
+  source_keys:
+  - w3c_webauthn_3
+  - passkeys_dev_intro
+  - google_passkeys_dev
+  - owasp_top10_a07
+- number: 11
+  slug: fewer-passwords
+  title: The future of authentication is fewer passwords
+  image: the_future_of_authentication.png
+  intention: Close with the thesis. Passkeys are not perfect identity security, but they remove some of the worst password
+    failure modes by design.
+  page_summary: The future is not more password advice. It is reducing dependence on passwords by moving to authentication
+    models that use proof instead of reusable shared secrets.
+  speaker_track: 'So where does this leave us?
+
+
+    The future of authentication is not better password advice. It is fewer passwords.
+
+
+    For years, we have tried to improve authentication by improving user behaviour around passwords.
+
+
+    Make them longer. Make them more complex. Store them better. Rotate them. Do not rotate them. Add MFA. Add phishing training.
+    Add warnings. Add recovery questions. Remove recovery questions because apparently everyone’s first pet was a security
+    incident.
+
+
+    Some of those improvements helped. Some made things worse. Many were reasonable responses to a bad underlying model.
+
+
+    But the important shift with passkeys is that we can stop asking the user to manage a reusable shared secret.
+
+
+    That does not solve every identity problem.
+
+
+    We still need good recovery flows. We still need secure devices. We still need thoughtful enrolment. We still need good
+    application design. We still need to handle migration, accessibility, enterprise policy, account lifecycle, and support.
+
+
+    But passkeys remove some of the worst failure modes by design.
+
+
+    They reduce phishing risk through origin binding. They reduce credential stuffing by using unique credentials per service.
+    They improve usability by letting people sign in with devices and unlock methods they already understand. They allow authentication
+    to become more secure and less hostile at the same time.
+
+
+    That combination is rare.
+
+
+    Usually we trade usability for security, then act surprised when people route around us.
+
+
+    Passkeys are interesting because they point to a better deal.
+
+
+    Not perfect authentication. Not magic. Not the end of identity security.
+
+
+    But a better primitive.
+
+
+    A model where the server stores public keys, the device protects private keys, and users are no longer expected to perfectly
+    operate reusable secrets in a world designed to trick them.
+
+
+    So my closing argument is this: authentication should not depend on perfect humans.
+
+
+    The future is not better password advice. It is fewer passwords.'
+  notes:
+  - title: Likely question
+    body: 'What are the limitations? Answer: recovery, device lifecycle, endpoint security, session protection, assurance
+      differences and adoption UX still matter.'
+  - title: Closing note
+    body: This slide should be the emotional landing point. Avoid adding extra content after it unless Slide 12 is a QR/resources
+      slide.
+  source_keys:
+  - fido_enterprise
+  - fido_multi_device
+  - nist_800_63b
+  - owasp_mfa
+  - passkeys_dev_intro
+- number: 12
+  slug: resources
+  title: Resources and further reading
+  image: slide-12-resources-placeholder.webp
+  intention: Future slide for QR code, repository link and companion website resources. This should be generated after the
+    website URL is known.
+  page_summary: A future companion slide should provide a QR code to the GitHub Pages site, source list and practical implementation
+    resources.
+  speaker_track: 'Optional final housekeeping slide after Q&A or before Q&A. Keep it quiet and practical: “The slides, notes
+    and references are available here.”'
+  notes:
+  - title: Future build note
+    body: Generate this slide once the GitHub Pages URL is confirmed. Include QR code, short URL, repo link and “Further reading”
+      callout.
+  source_keys:
+  - eleventy_docs
+  - eleventy_deploy
+  - passkeys_dev
+  - w3c_webauthn_3

@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: About
+description: "About the speaker and the Passkeys: Authentication Without Shared Secrets talk."
+permalink: /about/
+---
+
+<section class="site-shell content-section">
+  <div class="content-panel about-panel">
+    <p class="eyebrow">{{ talk.project.event }}</p>
+    <h1>About this talk</h1>
+    <p class="lede"><em>{{ talk.project.title }}</em> frames passkeys as a change in authentication architecture: replacing reusable shared secrets with cryptographic proof.</p>
+    <p>The companion site presents the deck as a web-native reference, with each slide paired with its intention, speaker track, highlighted notes, and authoritative reading.</p>
+    <h2>Speaker</h2>
+    <p><strong>{{ talk.project.speaker }}</strong><br>{{ talk.project.speaker_role }}</p>
+    <p>The content is vendor-neutral in tone. Microsoft identity references appear where useful alongside standards, government guidance, FIDO, OWASP, MDN, web.dev, and passkeys.dev sources.</p>
+  </div>
+</section>

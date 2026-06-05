@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Resources
+description: Authoritative references for passkeys, WebAuthn, phishing-resistant MFA, and the site build.
+permalink: /resources/
+---
+
+<section class="site-shell content-section">
+  <p class="eyebrow">Further reading</p>
+  <h1>Resources</h1>
+  <p class="lede">Standards, government guidance, developer references, and deployment documentation mapped across the talk.</p>
+
+  {% for group in talk.sources | sourceGroups %}
+    <section class="resource-group" aria-labelledby="source-group-{{ loop.index }}">
+      <h2 id="source-group-{{ loop.index }}">{{ group.type }}</h2>
+      <div class="source-grid">
+        {% for source in group.items %}
+          <article class="source-card">
+            <p class="type">{{ source.key }}</p>
+            <h3><a href="{{ source.url }}">{{ source.title }}</a></h3>
+            <p>{{ source.why }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</section>

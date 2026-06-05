@@ -1,0 +1,71 @@
+---
+layout: layouts/base.njk
+---
+{% set slide = pagination.items[0] %}
+{% set slides = talk.slides %}
+{% set previous = slides[slide.number - 2] %}
+{% set next = slides[slide.number] %}
+{% set title = slide.title %}
+{% set description = slide.page_summary %}
+
+<article class="site-shell slide-page">
+  <p class="eyebrow">Slide {{ slide.number }} / {{ slides | length }}</p>
+  <h1>{{ slide.title }}</h1>
+  <p class="lede">{{ slide.page_summary }}</p>
+
+  <figure class="slide-plate reveal">
+    <img
+      class="slide-image"
+      src="{{ slide | slideAsset | url }}"
+      alt="Slide {{ slide.number }}: {{ slide.title }}"
+      loading="{% if slide.number == 1 %}eager{% else %}lazy{% endif %}">
+    <figcaption>{{ slide.intention }}</figcaption>
+  </figure>
+
+  <section class="content-panel content-section" aria-labelledby="speaker-track">
+    <h2 id="speaker-track">Speaker track</h2>
+    <div class="speaker-track">
+      {% for paragraph in slide.speaker_track | paragraphs %}
+        <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if slide.notes %}
+    <section class="content-section" aria-labelledby="highlight-notes">
+      <h2 id="highlight-notes">Highlight notes</h2>
+      {% for note in slide.notes %}
+        <aside class="note-callout">
+          <strong>{{ note.title }}:</strong> {{ note.body }}
+        </aside>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% set sources = slide.source_keys | resolveSources(talk.sources) %}
+  {% if sources %}
+    <section class="content-section" aria-labelledby="additional-reading">
+      <h2 id="additional-reading">Additional reading</h2>
+      <div class="source-grid">
+        {% for source in sources %}
+          <article class="source-card">
+            <p class="type">{{ source.type }}</p>
+            <h3><a href="{{ source.url }}">{{ source.title }}</a></h3>
+            <p>{{ source.why }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <nav class="slide-nav" aria-label="Slide navigation">
+    {% if previous %}
+      <a class="nav-button" href="{{ previous | slidePath | url }}">← Slide {{ previous.number }}: {{ previous.title }}</a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    {% if next %}
+      <a class="nav-button" href="{{ next | slidePath | url }}">Slide {{ next.number }}: {{ next.title }} →</a>
+    {% endif %}
+  </nav>
+</article>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} | {% endif %}{{ talk.project.title }}</title>
+    <meta name="description" content="{{ description or talk.project.title }}">
+    <link rel="stylesheet" href="{{ '/assets/css/theme.css' | url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <nav class="site-shell site-nav" aria-label="Primary">
+        <a class="brand" href="{{ '/' | url }}">{{ talk.project.name }}</a>
+        <div class="nav-links">
+          <a href="{{ '/' | url }}">Home</a>
+          <a href="{{ '/resources/' | url }}">Resources</a>
+          <a href="{{ '/notes/' | url }}">Notes</a>
+          <a href="{{ '/about/' | url }}">About</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      {{ content | safe }}
+    </main>
+    <footer class="site-footer">
+      <div class="site-shell footer-grid">
+        <p><strong>{{ talk.project.speaker }}</strong><br>{{ talk.project.speaker_role }}</p>
+        <p>{{ talk.project.event }} companion site for <em>{{ talk.project.title }}</em>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
