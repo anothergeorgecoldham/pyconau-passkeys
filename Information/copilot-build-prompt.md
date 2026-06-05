@@ -19,7 +19,7 @@ Create a polished conference companion site and visual essay. The site must feel
 - Configure path prefix for `/pyconau-passkeys/` unless a custom domain is configured.
 - Use `talk-data.yaml` as the single source of truth.
 - Generate one slide page per slide.
-- Include a future placeholder route for Slide 12 resources.
+- Include the Slide 12 resources route.
 - Convert slide PNGs to high-quality WebP and reference those WebP images from the generated pages.
 - Use semantic HTML and accessible alt text.
 - Add `prefers-reduced-motion` support.
@@ -68,6 +68,6 @@ Use `sharp` or `@11ty/eleventy-img` for conversion. Prefer full-resolution WebP 
 - `npm run build` succeeds.
 - Site works under GitHub Pages path prefix.
 - Every slide page renders the WebP slide, speaker track, highlighted notes, and mapped additional reading.
-- Resources page groups authoritative links by standards, government guidance, developer implementation, enterprise deployment and site build docs.
+- Resources page groups authoritative passkey links by standards, government guidance, developer implementation and enterprise deployment.
 - Design is visually distinctive and consistent with the deck.
 - Site remains accessible, responsive and static.

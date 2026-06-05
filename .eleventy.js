@@ -38,10 +38,6 @@ module.exports = function (eleventyConfig) {
       {
         label: "Enterprise deployment",
         match: /enterprise|industry body|identity platform/i
-      },
-      {
-        label: "Site build",
-        match: /SSG/i
       }
     ];
     const groups = new Map(groupDefinitions.map((group) => [group.label, []]));

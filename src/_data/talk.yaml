@@ -103,16 +103,6 @@ sources:
     type: Australian government public guidance
     why: Local authoritative explanation of phishing and how attackers trick people into disclosing credentials or linking
       devices.
-  eleventy_docs:
-    title: Eleventy official documentation
-    url: https://www.11ty.dev/
-    type: SSG documentation
-    why: Primary documentation for the recommended static-site generator.
-  eleventy_deploy:
-    title: Eleventy — Deployment to GitHub Pages
-    url: https://www.11ty.dev/docs/deployment/
-    type: SSG deployment documentation
-    why: Official deployment guidance for Eleventy on GitHub Pages using GitHub Actions.
 slides:
 - number: 1
   slug: passkeys-authentication-without-shared-secrets
@@ -760,7 +750,9 @@ slides:
   - title: Closing note
     body: Use this slide to point attendees to the companion site, source list and further reading after the talk.
   source_keys:
-  - eleventy_docs
-  - eleventy_deploy
   - passkeys_dev
+  - passkeys_dev_intro
+  - cyber_au_passkeys
   - w3c_webauthn_3
+  - mdn_webauthn
+  - fido_enterprise

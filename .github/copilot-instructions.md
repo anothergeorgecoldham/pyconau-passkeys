@@ -62,11 +62,11 @@ Each generated slide page should render the same content model:
 6. Additional reading resolved from `source_keys`.
 7. Previous/next navigation.
 
-Preserve the slide sequence and slug-based routes from the data file. The intended routes include `/slides/01-passkeys-authentication-without-shared-secrets/` through `/slides/11-fewer-passwords/`, plus `/slides/12-resources/` as a future placeholder and `/resources/` for the grouped source catalogue.
+Preserve the slide sequence and slug-based routes from the data file. The intended routes include `/slides/01-passkeys-authentication-without-shared-secrets/` through `/slides/11-fewer-passwords/`, plus `/slides/12-resources/` and `/resources/` for the grouped source catalogue.
 
 Do not expose internal speaker-prep labels such as "speaker track", "presenter emphasis", "site note", "design note", or "intention" in the rendered site. The site should speak to attendees as the post-session reference version of the talk.
 
-Group resources by meaningful source type: standards, government guidance, developer implementation, enterprise deployment, and site build documentation. Microsoft references are acceptable where relevant, but keep the public tone vendor-neutral and balance them with standards, government, FIDO, OWASP, MDN, web.dev, and passkeys.dev sources.
+Group resources by meaningful passkey source type: standards, government guidance, developer implementation, and enterprise deployment. Microsoft references are acceptable where relevant, but keep the public tone vendor-neutral and balance them with standards, government, FIDO, OWASP, MDN, web.dev, and passkeys.dev sources.
 
 ## Design conventions
 

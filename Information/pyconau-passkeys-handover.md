@@ -655,10 +655,12 @@ Optional final housekeeping slide after Q&A or before Q&A. Keep it quiet and pra
 > **Closing note:** Use this slide to point attendees to the companion site, source list and further reading after the talk.
 
 ### Additional reading mapped to this slide
-- [Eleventy official documentation](https://www.11ty.dev/) — Primary documentation for the recommended static-site generator.
-- [Eleventy — Deployment to GitHub Pages](https://www.11ty.dev/docs/deployment/) — Official deployment guidance for Eleventy on GitHub Pages using GitHub Actions.
 - [passkeys.dev — Developer resources](https://passkeys.dev/) — Vendor-neutral passkey implementation resource maintained by members of the W3C Web Identity & Credentials Adoption Community Group and FIDO Alliance.
+- [passkeys.dev — What are passkeys?](https://passkeys.dev/docs/intro/what-are-passkeys/) — Clear developer-oriented explanation of passkeys, public/private keys, storage model and phishing resistance.
+- [Australian Signals Directorate / cyber.gov.au — Passkeys](https://www.cyber.gov.au/protect-yourself/secure-your-accounts/passkeys) — Plain-language Australian public guidance on passkeys; useful for audience-friendly explainer pages.
 - [W3C Web Authentication: An API for accessing Public Key Credentials Level 3](https://www.w3.org/TR/webauthn-3/) — Primary web standard for WebAuthn, public-key credentials, relying parties, origins, challenges, authenticators, attestation and assertions.
+- [MDN — Web Authentication API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API) — Accessible API-level WebAuthn reference for web developers.
+- [FIDO Alliance — Replacing Password-Only Authentication with Passkeys in the Enterprise](https://fidoalliance.org/white-paper-replacing-password-only-authentication-with-passkeys-in-the-enterprise/) — Enterprise passkey deployment guidance, including synced versus device-bound passkeys.
 
 
 ---
@@ -699,11 +701,6 @@ Optional final housekeeping slide after Q&A or before Q&A. Keep it quiet and pra
   _Australian government public guidance: Plain-language Australian public guidance on passkeys; useful for audience-friendly explainer pages._
 - **Australian Signals Directorate / cyber.gov.au — Phishing** — https://www.cyber.gov.au/threats/types-threats/phishing  
   _Australian government public guidance: Local authoritative explanation of phishing and how attackers trick people into disclosing credentials or linking devices._
-- **Eleventy official documentation** — https://www.11ty.dev/  
-  _SSG documentation: Primary documentation for the recommended static-site generator._
-- **Eleventy — Deployment to GitHub Pages** — https://www.11ty.dev/docs/deployment/  
-  _SSG deployment documentation: Official deployment guidance for Eleventy on GitHub Pages using GitHub Actions._
-
 ## Recommended additional artefacts for the repo
 
 Create these files in the project:
