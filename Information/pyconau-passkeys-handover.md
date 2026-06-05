@@ -642,17 +642,17 @@ The future is not better password advice. It is fewer passwords.
 ## Slide 12: Resources and further reading
 
 **Route:** `/slides/12-resources/`  
-**Image source:** `src/assets/slides/slide-12-resources-placeholder.webp`  
-**Intention:** Future slide for QR code, repository link and companion website resources. This should be generated after the website URL is known.
+**Image source:** `src/assets/slides/resources_and_further_reading.webp`  
+**Intention:** Final resources slide for the companion website, source list and practical implementation references.
 
 ### Page summary
-A future companion slide should provide a QR code to the GitHub Pages site, source list and practical implementation resources.
+The companion site provides the slides, notes, source list and practical implementation resources for attendees.
 
 ### Speaker track
 Optional final housekeeping slide after Q&A or before Q&A. Keep it quiet and practical: “The slides, notes and references are available here.”
 
 ### Highlight notes
-> **Future build note:** Generate this slide once the GitHub Pages URL is confirmed. Include QR code, short URL, repo link and “Further reading” callout.
+> **Closing note:** Use this slide to point attendees to the companion site, source list and further reading after the talk.
 
 ### Additional reading mapped to this slide
 - [Eleventy official documentation](https://www.11ty.dev/) — Primary documentation for the recommended static-site generator.

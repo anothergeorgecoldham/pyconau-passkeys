@@ -21,7 +21,8 @@ const sourceImages = new Map([
   ["phishing_real_vs_fake_doors.png", "ChatGPT Image Jun 5, 2026, 10_34_19 PM.png"],
   ["passkeys_and_origin_binding_infographic.png", "ChatGPT Image Jun 5, 2026, 10_34_37 PM.png"],
   ["password_reuse_a_dangerous_connection.png", "ChatGPT Image Jun 5, 2026, 10_34_53 PM.png"],
-  ["distinct_keys_for_distinct_services.png", "ChatGPT Image Jun 5, 2026, 10_35_07 PM.png"]
+  ["distinct_keys_for_distinct_services.png", "ChatGPT Image Jun 5, 2026, 10_35_07 PM.png"],
+  ["resources_and_further_reading.png", "ChatGPT Image Jun 6, 2026, 12_06_59 AM.png"]
 ]);
 
 await fs.mkdir(outputDir, { recursive: true });

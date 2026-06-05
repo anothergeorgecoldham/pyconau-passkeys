@@ -13,7 +13,7 @@ project:
     cream: '#FCFFEB'
     pale_gold: '#FAFAC6'
     peach: '#FECDAA'
-  future_slide_12: true
+  future_slide_12: false
 sources:
   w3c_webauthn_3:
     title: 'W3C Web Authentication: An API for accessing Public Key Credentials Level 3'
@@ -751,17 +751,14 @@ slides:
 - number: 12
   slug: resources
   title: Resources and further reading
-  image: slide-12-resources-placeholder.webp
-  intention: Future slide for QR code, repository link and companion website resources. This should be generated after the
-    website URL is known.
-  page_summary: A future companion slide should provide a QR code to the GitHub Pages site, source list and practical implementation
-    resources.
+  image: resources_and_further_reading.png
+  intention: Final resources slide for the companion website, source list and practical implementation references.
+  page_summary: The companion site provides the slides, notes, source list and practical implementation resources for attendees.
   speaker_track: 'Optional final housekeeping slide after Q&A or before Q&A. Keep it quiet and practical: “The slides, notes
     and references are available here.”'
   notes:
-  - title: Future build note
-    body: Generate this slide once the GitHub Pages URL is confirmed. Include QR code, short URL, repo link and “Further reading”
-      callout.
+  - title: Closing note
+    body: Use this slide to point attendees to the companion site, source list and further reading after the talk.
   source_keys:
   - eleventy_docs
   - eleventy_deploy
