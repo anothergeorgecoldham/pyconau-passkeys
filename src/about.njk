@@ -1,18 +1,20 @@
 ---
 layout: layouts/base.njk
 title: About
-description: "About the speaker and the Passkeys: Authentication Without Shared Secrets talk."
+description: "About Authentication for humans, why passkeys finally make sense."
 permalink: /about/
 ---
 
 <section class="site-shell content-section">
   <div class="content-panel about-panel">
-    <p class="eyebrow">{{ talk.project.event }}</p>
-    <h1>About this talk</h1>
-    <p class="lede"><em>{{ talk.project.title }}</em> frames passkeys as a change in authentication architecture: replacing reusable shared secrets with cryptographic proof.</p>
-    <p>The companion site presents the deck as a web-native reference, with each slide paired with its intention, speaker track, highlighted notes, and authoritative reading.</p>
-    <h2>Speaker</h2>
+    <p class="eyebrow">{{ talk.project.event }} · Cybersecurity</p>
+    <h1>{{ talk.project.title }}</h1>
+    <p class="lede">This talk starts from a simple claim: authentication keeps failing not because people ignore advice, but because the system asks too much of them.</p>
+    <p>Password managers and MFA help, but phishing and credential theft remain common because reusable secrets are still part of the design. Passkeys change that shape by replacing shared secrets with public-key proof.</p>
+    <p>Use this site as the reference version of the session: revisit the argument, follow the examples, and take the standards and implementation links with you.</p>
+    <h2>Presented by</h2>
     <p><strong>{{ talk.project.speaker }}</strong><br>{{ talk.project.speaker_role }}</p>
-    <p>The content is vendor-neutral in tone. Microsoft identity references appear where useful alongside standards, government guidance, FIDO, OWASP, MDN, web.dev, and passkeys.dev sources.</p>
+    <p>Friday 28 August 2026, 2:00pm-2:30pm, Ballroom 3.</p>
+    <p><a href="https://2026.pycon.org.au/schedule/K3M8AE/">View the session on the PyCon AU 2026 schedule</a>.</p>
   </div>
 </section>

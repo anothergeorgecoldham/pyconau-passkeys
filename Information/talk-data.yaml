@@ -1,6 +1,6 @@
 project:
   name: pyconau-passkeys
-  title: 'Passkeys: Authentication Without Shared Secrets'
+  title: 'Authentication for humans, why passkeys finally make sense.'
   speaker: George Coldham
   speaker_role: Microsoft Cloud Solution Architect
   event: PyCon AU
@@ -116,7 +116,7 @@ sources:
 slides:
 - number: 1
   slug: passkeys-authentication-without-shared-secrets
-  title: 'Passkeys: Authentication Without Shared Secrets'
+  title: 'Authentication for humans, why passkeys finally make sense.'
   image: passkeys_authentication_in_elegant_design.png
   intention: Open with a visual statement that signals this is not a generic security deck. Establish passkeys as a structural
     redesign of authentication, not just another login convenience.

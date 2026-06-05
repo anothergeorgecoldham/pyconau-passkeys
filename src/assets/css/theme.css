@@ -104,6 +104,19 @@ h3 { font-size: clamp(1.45rem, 3vw, 2.2rem); }
   border-radius: 18px;
 }
 .source-card .type { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--color-muted); }
+.source-card h3 {
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.08;
+  margin: .45rem 0 .7rem;
+}
+.source-card h3 a {
+  text-decoration-thickness: .06em;
+  text-decoration-color: rgba(168, 129, 58, .45);
+}
+.source-card p {
+  font-size: .94rem;
+  line-height: 1.55;
+}
 
 .slide-nav {
   display: flex;
@@ -228,9 +241,18 @@ h3 { font-size: clamp(1.45rem, 3vw, 2.2rem); }
   border: 1px solid var(--color-line);
   box-shadow: 0 10px 28px rgba(47, 43, 56, .1);
 }
-.slide-card h3 { margin-bottom: .4rem; }
+.slide-card h3 {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  margin-bottom: .4rem;
+}
+.slide-card .type {
+  margin-top: .9rem;
+}
 
 .resource-group { margin-top: 3rem; }
+.resource-group h2 {
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+}
 .notes-panel,
 .about-panel {
   margin-block: 1.25rem;

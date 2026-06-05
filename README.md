@@ -1,8 +1,8 @@
 # pyconau-passkeys
 
-Companion website for George Coldham's PyCon AU talk, **Passkeys: Authentication Without Shared Secrets**.
+Companion website for George Coldham's PyCon AU talk, **Authentication for humans, why passkeys finally make sense.**
 
-The site is an Eleventy static site designed as a visual essay: one page per slide, speaker notes, highlight callouts, and authoritative references.
+The site is an Eleventy static site designed as an audience-facing visual essay: one page per slide, key ideas, and authoritative references.
 
 ## Commands
 

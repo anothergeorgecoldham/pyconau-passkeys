@@ -2,7 +2,7 @@
   "name": "pyconau-passkeys",
   "version": "1.0.0",
   "private": true,
-  "description": "11ty companion site for the PyCon AU talk Passkeys: Authentication Without Shared Secrets.",
+  "description": "11ty companion site for the PyCon AU talk Authentication for humans, why passkeys finally make sense.",
   "type": "commonjs",
   "scripts": {
     "dev": "eleventy --serve",
@@ -13,5 +13,8 @@
     "@11ty/eleventy": "^3.1.2",
     "js-yaml": "^4.1.0",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
   }
 }

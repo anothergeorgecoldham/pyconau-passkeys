@@ -1,14 +1,14 @@
 ---
 layout: layouts/base.njk
 title: Resources
-description: Authoritative references for passkeys, WebAuthn, phishing-resistant MFA, and the site build.
+description: References for passkeys, WebAuthn, phishing-resistant MFA, and getting started.
 permalink: /resources/
 ---
 
 <section class="site-shell content-section">
-  <p class="eyebrow">Further reading</p>
+  <p class="eyebrow">Go deeper</p>
   <h1>Resources</h1>
-  <p class="lede">Standards, government guidance, developer references, and deployment documentation mapped across the talk.</p>
+  <p class="lede">If the talk gave you the mental model, these links are the next step: a short path from plain-language explainers to implementation guidance and standards.</p>
 
   {% for group in talk.sources | sourceGroups %}
     <section class="resource-group" aria-labelledby="source-group-{{ loop.index }}">

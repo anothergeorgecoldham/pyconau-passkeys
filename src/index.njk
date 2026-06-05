@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Home
-description: A visual essay companion site for a PyCon AU talk about passkeys and authentication without shared secrets.
+description: A conference reference for Authentication for humans, why passkeys finally make sense.
 ---
 
 <section class="hero">
@@ -9,9 +9,9 @@ description: A visual essay companion site for a PyCon AU talk about passkeys an
     <div class="hero-content">
       <p class="eyebrow">{{ talk.project.event }}</p>
       <h1>{{ talk.project.title }}</h1>
-      <p class="lede">A conference companion and visual essay about why authentication gets stronger when we stop asking humans to manage reusable secrets in hostile environments.</p>
+      <p class="lede">Authentication keeps failing because we keep asking humans to manage reusable secrets in hostile environments. Passkeys point to a better deal: cryptographic proof, fewer passwords, and login flows that are less hostile to the people using them.</p>
       <p class="button-row">
-        <a class="nav-button" href="{{ talk.slides[0] | slidePath | url }}">Start the visual essay</a>
+        <a class="nav-button" href="{{ talk.slides[0] | slidePath | url }}">Start reading</a>
         <a class="nav-button" href="{{ '/resources/' | url }}">Browse resources</a>
       </p>
     </div>
@@ -19,8 +19,9 @@ description: A visual essay companion site for a PyCon AU talk about passkeys an
 </section>
 
 <section class="site-shell content-section" aria-labelledby="slide-index">
-  <p class="eyebrow">Guided talk companion</p>
-  <h2 id="slide-index">Slides and speaker notes</h2>
+  <p class="eyebrow">After the session</p>
+  <h2 id="slide-index">Follow the argument</h2>
+  <p class="lede">Read it in order, or jump to the part you want to revisit. Each page keeps the slide, the explanation, and the references together.</p>
   <div class="slide-grid">
     {% for slide in talk.slides %}
       <article class="source-card slide-card">

@@ -19,22 +19,23 @@ layout: layouts/base.njk
       src="{{ slide | slideAsset | url }}"
       alt="Slide {{ slide.number }}: {{ slide.title }}"
       loading="{% if slide.number == 1 %}eager{% else %}lazy{% endif %}">
-    <figcaption>{{ slide.intention }}</figcaption>
+    <figcaption>{{ slide.page_summary }}</figcaption>
   </figure>
 
-  <section class="content-panel content-section" aria-labelledby="speaker-track">
-    <h2 id="speaker-track">Speaker track</h2>
+  <section class="content-panel content-section" aria-labelledby="essay">
+    <h2 id="essay">The idea</h2>
     <div class="speaker-track">
-      {% for paragraph in slide.speaker_track | paragraphs %}
+      {% for paragraph in slide.speaker_track | audienceParagraphs %}
         <p>{{ paragraph }}</p>
       {% endfor %}
     </div>
   </section>
 
-  {% if slide.notes %}
-    <section class="content-section" aria-labelledby="highlight-notes">
-      <h2 id="highlight-notes">Highlight notes</h2>
-      {% for note in slide.notes %}
+  {% set publicNotes = slide.notes | publicNotes %}
+  {% if publicNotes %}
+    <section class="content-section" aria-labelledby="key-ideas">
+      <h2 id="key-ideas">Key ideas</h2>
+      {% for note in publicNotes %}
         <aside class="note-callout">
           <strong>{{ note.title }}:</strong> {{ note.body }}
         </aside>

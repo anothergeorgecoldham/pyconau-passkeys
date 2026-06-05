@@ -1,6 +1,6 @@
 # Copilot / Coding Agent Build Prompt
 
-You are building `pyconau-passkeys`, an 11ty static site hosted on GitHub Pages for George Coldham's PyCon AU talk, **Passkeys: Authentication Without Shared Secrets**.
+You are building `pyconau-passkeys`, an 11ty static site hosted on GitHub Pages for George Coldham's PyCon AU talk, **Authentication for humans, why passkeys finally make sense.**
 
 Use these files as your authoritative brief:
 

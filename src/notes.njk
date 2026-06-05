@@ -1,20 +1,21 @@
 ---
 layout: layouts/base.njk
-title: Highlight notes
-description: Presenter notes and likely questions from the passkeys talk.
+title: Key ideas
+description: Questions and takeaways from the passkeys talk.
 permalink: /notes/
 ---
 
 <section class="site-shell content-section">
-  <p class="eyebrow">Presenter reference</p>
-  <h1>Highlight notes</h1>
-  <p class="lede">Likely questions, emphasis points, and build notes collected across the slide sequence.</p>
+  <p class="eyebrow">Takeaways</p>
+  <h1>Key ideas</h1>
+  <p class="lede">Short answers to the questions people usually ask once passkeys move from “nice login feature” to “different authentication primitive.”</p>
 
   {% for slide in talk.slides %}
-    {% if slide.notes %}
+    {% set publicNotes = slide.notes | publicNotes %}
+    {% if publicNotes %}
       <section class="content-panel notes-panel" aria-labelledby="notes-slide-{{ slide.number }}">
         <h2 id="notes-slide-{{ slide.number }}"><a href="{{ slide | slidePath | url }}">Slide {{ slide.number }}: {{ slide.title }}</a></h2>
-        {% for note in slide.notes %}
+        {% for note in publicNotes %}
           <aside class="note-callout">
             <strong>{{ note.title }}:</strong> {{ note.body }}
           </aside>
