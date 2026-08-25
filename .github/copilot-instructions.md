@@ -4,12 +4,7 @@
 
 This repository is the source workspace for `pyconau-passkeys`, an 11ty static companion site for George Coldham's PyCon AU talk, "Authentication for humans, why passkeys finally make sense." The public title and abstract should follow the PyCon AU schedule page at `https://2026.pycon.org.au/schedule/K3M8AE/`.
 
-Use these files as the primary brief when implementing the site:
-
-- `Information/pyconau-passkeys-handover.md` - complete project handover, information architecture, slide-by-slide content, source catalogue, and recommended repo artifacts.
-- `Information/talk-data.yaml` - structured source of truth for project metadata, sources, slides, notes, image names, and `source_keys`.
-- `Information/theme.css` - base design system and reusable visual component styles.
-- `Information/copilot-build-prompt.md` - condensed implementation brief and definition of done.
+Use the tracked site source as the implementation brief. `src/_data/talk.yaml` is the structured source of truth for project metadata, sources, slides, notes, image names, and `source_keys`. The local `Information/` directory is ignored and may contain private working material.
 
 ## Build, test, and lint commands
 
@@ -38,14 +33,14 @@ No single-test command exists yet because no test framework is configured.
 
 ## Architecture and data flow
 
-The intended implementation is a static 11ty/GitHub Pages site. Content should be data-driven from the talk data rather than duplicated across templates. When scaffolding the site, copy or transform `Information/talk-data.yaml` into `src/_data/talk.yaml` and treat that file as the generated site's single source of truth.
+The intended implementation is a static 11ty/GitHub Pages site. Content should be data-driven from `src/_data/talk.yaml` rather than duplicated across templates.
 
 Expected high-level structure:
 
 - `src/_data/talk.yaml` supplies project metadata, authoritative sources, and slide records.
 - `src/_includes/layouts/base.njk` and `src/_includes/layouts/slide.njk` provide shared page framing and slide page layout.
 - A slide pagination template, such as `src/slides/slides.11tydata.js`, generates one page per slide.
-- `src/assets/css/theme.css` carries forward the design system from `Information/theme.css`.
+- `src/assets/css/theme.css` contains the project's design system.
 - `src/assets/slides/` contains converted WebP slide images referenced by generated slide pages.
 - `.github/workflows/deploy.yml` should deploy the 11ty build to GitHub Pages using the official Eleventy/GitHub Pages approach.
 
@@ -72,7 +67,7 @@ Group resources by meaningful passkey source type: standards, government guidanc
 
 Do not apply a generic documentation or blog theme. The site should extend the modern Art Nouveau slide deck as a polished conference companion and visual essay.
 
-Use the existing palette and CSS variables from `Information/theme.css`: plum as the anchor color, mist/cream backgrounds, pale gold and peach accents, sage support color, expressive serif headings, and readable sans-serif body text. Reuse component patterns already represented there: `hero-panel`, `slide-plate`, `content-panel`, `speaker-track`, `note-callout`, `source-grid`, `source-card`, and `slide-nav`.
+Use the existing palette and CSS variables from `src/assets/css/theme.css`: plum as the anchor color, mist/cream backgrounds, pale gold and peach accents, sage support color, expressive serif headings, and readable sans-serif body text. Reuse component patterns already represented there: `hero-panel`, `slide-plate`, `content-panel`, `speaker-track`, `note-callout`, `source-grid`, `source-card`, and `slide-nav`.
 
 Treat each slide page like a gallery plate with technical notes below it. Use subtle CSS-only transitions, preserve visible focus states, support `prefers-reduced-motion`, keep JavaScript optional and minimal, and optimize first for desktop/laptop conference browsing while remaining responsive.
 

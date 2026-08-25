@@ -18,8 +18,8 @@ There is no test or lint command configured yet.
 ## Source material
 
 - `src/_data/talk.yaml` is the site source of truth.
-- `Information/pyconau-passkeys-handover.md` is the full handover brief.
-- `Information/theme.css` is the base design system.
 - `scripts/convert-slides.mjs` converts the provided PNG artwork into WebP files in `src/assets/slides/`.
+
+The local `Information/` directory contains private working material and is not tracked by Git.
 
 The GitHub Pages build uses the `/pyconau-passkeys/` path prefix.
